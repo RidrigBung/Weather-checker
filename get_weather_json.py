@@ -1,0 +1,15 @@
+import requests
+from datetime import date
+import json
+
+base_url = "https://api.open-meteo.com/v1/forecast?"
+
+city = {"name": "Dmitrov", "latitude": "56.34", "longitude": "37.52"}
+
+response = requests.get(
+    base_url + f"latitude={city['latitude']}&longitude={city['longitude']}&hourly=temperature_2m,precipitation_probability,weathercode")
+print(response)
+weather_dict = response.json()
+
+with open(f"./weather_data/weather {str(date.today())}.json", "w") as weather_file:
+    json.dump(weather_dict, weather_file, sort_keys=True, indent=4)

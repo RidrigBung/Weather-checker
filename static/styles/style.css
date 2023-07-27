@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 24;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-image: url("../images/clouds-background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+main {
+  height: 90vh;
+  margin: 2em 20%;
+  text-align: center;
+  /* background-color: rgb(255, 77, 252, 0.75); */
+  background: linear-gradient(
+    rgba(255, 114, 253, 0.75),
+    rgba(231, 68, 229, 0.75),
+    rgba(209, 29, 206, 0.75)
+  );
+  border: 0.1em solid rgb(23, 36, 154);
+  border-radius: 1em;
+}
+
+.window {
+  height: 80%;
+  margin: 0.1em 5%;
+}
+
+.today-border {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  height: 22em;
+  padding-top: 2em;
+  margin: 0.1em 0;
+  text-align: left;
+  color: rgb(205, 17, 102);
+  /* background-color: #000000; */
+}
+
+.today-border .left-column .city {
+  margin-top: 1em;
+  font-size: 36px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+.today-border img {
+  align-self: center;
+}
+
+.today-border .left-column .data {
+  font-size: 32px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.today-border .top-right-corner {
+  font-size: 50px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  margin-top: 1.5em;
+}
+
+.hours-border {
+  margin-bottom: 1em;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  border: 0.1em solid rgb(23, 36, 154);
+}
+
+.hour {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 4em;
+  width: 4em;
+  margin: 0.1em 0.1em;
+  padding: 0.1em;
+  border: 0.1em solid rgb(23, 36, 154);
+  border-radius: 0.5em;
+  color: rgb(205, 17, 142);
+  /* background-color: rgba(195, 17, 122, 0.25); */
+  background: linear-gradient(
+    rgba(234, 104, 232, 0.75),
+    rgba(218, 63, 216, 0.75),
+    rgba(189, 27, 187, 0.75)
+  );
+}
+
+.rest-of-week {
+  display: flex;
+  margin: 0.1em 0;
+  justify-content: space-around;
+}
+
+.day-of-week {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 1em;
+  width: 6em;
+  height: 9em;
+  border: 0.1em solid rgb(23, 36, 154);
+  border-radius: 1em;
+  color: rgb(205, 17, 102);
+  /* background-color: rgba(195, 17, 122, 0.25); */
+  background: linear-gradient(
+    rgba(234, 104, 232, 0.75),
+    rgba(218, 63, 216, 0.75),
+    rgba(189, 27, 187, 0.75)
+  );
+}
+
+.day-of-week img {
+  padding-bottom: 1em;
+}
