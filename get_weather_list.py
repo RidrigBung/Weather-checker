@@ -2,7 +2,7 @@ import json
 from datetime import datetime, date
 
 
-def get_weather_date_and_time(date_times: list = []) -> list:
+def get_weather_date_week_time(date_times: list = []) -> list:
     weather_date = []
     weather_week_day = []
     week = ["Monday", "Tuesday", "Wednesday",
@@ -23,14 +23,13 @@ with open("./weather_data/weather 2023-07-27.json", "r") as file:
 data_dict = json.loads(data_string)
 
 data_dict = data_dict["hourly"]
-weather_date, weather_week_day, weather_time = get_weather_date_and_time(
+weather_date, weather_week_day, weather_time = get_weather_date_week_time(
     data_dict["time"])
 temperature = data_dict["temperature_2m"]
 weathercode = data_dict["weathercode"]
-precipitation_probability = data_dict["precipitation_probability"]
 
 data_list = list(zip(weather_date, weather_week_day, weather_time, temperature,
-                     weathercode, precipitation_probability))
+                     weathercode))
 # for d in data_list:
 #     print(d)
 
