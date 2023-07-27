@@ -51,6 +51,7 @@ main {
 
 .today-border img {
   align-self: center;
+  height: 60%;
 }
 
 .today-border .left-column .data {
@@ -116,5 +117,7 @@ main {
 }
 
 .day-of-week img {
-  padding-bottom: 1em;
+  align-self: center;
+  overflow: hidden;
+  width: 80%;
 }

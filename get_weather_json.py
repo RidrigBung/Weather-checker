@@ -4,10 +4,11 @@ import json
 
 base_url = "https://api.open-meteo.com/v1/forecast?"
 
-city = {"name": "Dmitrov", "latitude": "56.34", "longitude": "37.52"}
+city = {"name": "Dmitrov", "latitude": "56.34",
+        "longitude": "37.52", "timezone": "Europe%2FMoscow"}
 
 response = requests.get(
-    base_url + f"latitude={city['latitude']}&longitude={city['longitude']}&hourly=temperature_2m,precipitation_probability,weathercode")
+    base_url + f"latitude={city['latitude']}&longitude={city['longitude']}&hourly=temperature_2m,precipitation_probability,weathercode&timezone={city['timezone']}")
 print(response)
 weather_dict = response.json()
 
