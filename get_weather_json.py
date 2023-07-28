@@ -8,7 +8,7 @@ city = {"name": "Dmitrov", "latitude": "56.34",
         "longitude": "37.52", "timezone": "Europe%2FMoscow"}
 
 response = requests.get(
-    base_url + f"latitude={city['latitude']}&longitude={city['longitude']}&hourly=temperature_2m,precipitation_probability,weathercode&timezone={city['timezone']}")
+    base_url + f"latitude={city['latitude']}&longitude={city['longitude']}&hourly=temperature_2m,precipitation_probability,weathercode,surface_pressure,windspeed_10m&timezone={city['timezone']}")
 print(response)
 weather_dict = response.json()
 

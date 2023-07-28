@@ -41,9 +41,11 @@ weather_date, weather_week_day, weather_time = get_weather_lists(
     data_dict["time"])
 temperature = data_dict["temperature_2m"]
 weathercode = get_weathercode(data_dict["weathercode"])
+surface_pressure = data_dict["surface_pressure"]
+windspeed_10m = data_dict["windspeed_10m"]
 
 data_list = list(zip(weather_date, weather_week_day, weather_time, temperature,
-                     weathercode))
+                     weathercode, surface_pressure, windspeed_10m))
 for d in data_list:
     print(d)
 
@@ -54,4 +56,5 @@ if cur_minute >= 30:
     cur_hour += 1
 for elem in data_list:
     if int(elem[2]) == cur_hour:
-        today_temp = elem[3]
+        # temperature, surface_pressure, windspeed_10m
+        current_data = [elem[3], elem[5], elem[6]]

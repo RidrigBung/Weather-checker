@@ -18,6 +18,8 @@
           <div class="left-column">
             <p class="city">{{ city }}</p>
             <p class="data">{{ data_list[0][1] }}</p>
+            <p class="data">{{ current_data[1] }} hPa</p>
+            <p class="data">{{ current_data[2] }} km/h</p>
           </div>
           {% if data_list[0][4] == "0" -%}
           <img src="/static/images/weather0.png" alt="Weather icon" />
@@ -28,7 +30,7 @@
           {% else -%}
           <img src="/static/images/weather3.png" alt="Weather icon" />
           {% endif -%}
-          <div class="top-right-corner"><p>{{ today_temp }}℃</p></div>
+          <div class="top-right-corner"><p>{{ current_data[0] }}℃</p></div>
         </div>
         <div class="hours-border">
           {% for i in range(24) -%}
