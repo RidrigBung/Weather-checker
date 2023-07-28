@@ -2,34 +2,23 @@ import json
 from datetime import datetime, date
 
 
-# Разбитие формата {date}T{time} на дату, день недели и час.
-def get_weather_lists(date_times: list = []) -> list:
-    weather_date = []
+# Получение названий семи дней недели начиная с сегодня
+def get_weather_week_day(date_times: list = []) -> list:
     weather_week_day = []
     week = ["Monday", "Tuesday", "Wednesday",
             "Thursday", "Friday", "Saturday", "Sunday"]
-    weather_time = []
-    for date_time in date_times:
-        weather_date.append(date_time[:10])
+    for i in range(0, 7):
         weather_week_day.append(
-            week[date.fromisoformat(date_time[:10]).weekday()])
-        weather_time.append(date_time[11:13])
-    return weather_date, weather_week_day, weather_time
+            week[date.fromisoformat(date_times[i * 24][:10]).weekday()])
+    return weather_week_day
 
 
-# Источник json файла даёт множество кодов состояний погоды,
-# функция обобщает их до: 0 - ясно, 1 - облачно, 2 - дождь, 3 - снег.
-def get_weathercode(codes: list = []) -> list:
-    weathercode = []
-    code_dict = {0: "0", 1: "0", 2: "1", 3: "1", 45: "1",
-                 48: "1", 51: "2", 53: "2", 55: "2", 56: "2",
-                 57: "2", 61: "2", 63: "2", 65: "2", 66: "2",
-                 67: "2", 71: "3", 73: "3", 75: "3", 77: "3",
-                 80: "2", 81: "2", 82: "2", 85: "2", 86: "2",
-                 95: "2", 96: "2", 99: "2"}
-    for code in codes:
-        weathercode.append(code_dict[code])
-    return weathercode
+# Возвращает время в часах [00:00, 01:00, 02:00, ... ,24:00]
+def get_weather_time(date_times: list = []) -> list:
+    weather_time = []
+    for date_time in date_times[:24]:
+        weather_time.append(date_time[11:16])
+    return weather_time
 
 
 # Поиск максимальной температуры в каждый из дней
@@ -38,6 +27,35 @@ def get_max_temperature_list(temperatures: dict) -> list:
     for i in range(1, 7):
         max_temperature.append(max(temperatures[i * 24:(i + 1) * 24]))
     return max_temperature
+
+
+# Возвращает текущий час
+def get_cur_hour() -> int:
+    cur_hour, cur_minute = int(str(datetime.now())[11:13]), int(
+        str(datetime.now())[14:16])
+    if cur_minute >= 30:
+        cur_hour += 1
+    return cur_hour
+
+
+# Источник json файла даёт множество кодов состояний погоды,
+# функция обобщает их до: 0 - ясно, 1 - облачно, 2 - дождь, 3 - снег.
+def simplify_weathercode(code_old: int) -> str:
+    code_dict = {0: "0", 1: "0", 2: "1", 3: "1", 45: "1",
+                 48: "1", 51: "2", 53: "2", 55: "2", 56: "2",
+                 57: "2", 61: "2", 63: "2", 65: "2", 66: "2",
+                 67: "2", 71: "3", 73: "3", 75: "3", 77: "3",
+                 80: "2", 81: "2", 82: "2", 85: "2", 86: "2",
+                 95: "2", 96: "2", 99: "2"}
+    return code_dict[code_old]
+
+
+def get_weathercode(codes: list = []) -> list:
+    raw_weathercode = []
+    for i in range(1, 7):
+        raw_weathercode.append(simplify_weathercode(codes[i * 24]))
+
+    return raw_weathercode
 
 
 # Загрузка данных из последнего json файла в data_dict
@@ -53,30 +71,18 @@ data_dict = json.loads(data_string)
 # Списки содержат почасовую информацию о 7 днях начиная с сегодняшнего.
 data_dict = data_dict["hourly"]
 
-# Разбитие значений словаря на списки
-weather_date, weather_week_day, weather_time = get_weather_lists(
-    data_dict["time"])
-temperature = data_dict["temperature_2m"]
-weathercode = get_weathercode(data_dict["weathercode"])
-surface_pressure = data_dict["surface_pressure"]
-windspeed_10m = data_dict["windspeed_10m"]
+cur_hour = get_cur_hour()
+weather_week_day = get_weather_week_day(data_dict["time"])
 
-# Объединение полученных выше словарей в единую структуру данных
-data_list = list(zip(weather_date, weather_week_day, weather_time, temperature,
-                     weathercode, surface_pressure, windspeed_10m))
-# for d in data_list:
-#     print(d)
+today = {"temperature": data_dict["temperature_2m"][cur_hour],
+         "weathercode": simplify_weathercode(data_dict["weathercode"][cur_hour]),
+         "week_day": weather_week_day[0],
+         "pressure": data_dict["surface_pressure"][cur_hour],
+         "windspeed": data_dict["windspeed_10m"][cur_hour], }
 
-# Эти температуры отображаются в прогнозе на неделю
-max_temps = get_max_temperature_list(data_dict["temperature_2m"])
+hours = {"time": get_weather_time(),
+         "temperature": data_dict["temperature_2m"][:24]}
 
-# Получение текущей температуры,
-# атмосфореного давления и скорости ветра
-cur_hour, cur_minute = int(str(datetime.now())[11:13]), int(
-    str(datetime.now())[14:16])
-if cur_minute >= 30:
-    cur_hour += 1
-for elem in data_list:
-    if int(elem[2]) == cur_hour:
-        # temperature, surface_pressure, windspeed_10m
-        current_data = [elem[3], elem[5], elem[6]]
+week = {"temperature": get_max_temperature_list(data_dict["temperature_2m"]),
+        "weathercode": get_weathercode(data_dict["weathercode"]),
+        "week_day": weather_week_day[1:], }
