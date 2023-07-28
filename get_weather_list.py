@@ -32,6 +32,14 @@ def get_weathercode(codes: list = []) -> list:
     return weathercode
 
 
+# Поиск максимальной температуры в каждый из дней
+def get_max_temperature_list(temperatures: dict) -> list:
+    max_temperature = []
+    for i in range(1, 7):
+        max_temperature.append(max(temperatures[i * 24:(i + 1) * 24]))
+    return max_temperature
+
+
 # Загрузка данных из последнего json файла в data_dict
 with open(f"./weather_data/weather {str(datetime.now())[:10]}.json", "r") as file:
     data_string = ""
@@ -58,6 +66,9 @@ data_list = list(zip(weather_date, weather_week_day, weather_time, temperature,
                      weathercode, surface_pressure, windspeed_10m))
 # for d in data_list:
 #     print(d)
+
+# Эти температуры отображаются в прогнозе на неделю
+max_temps = get_max_temperature_list(data_dict["temperature_2m"])
 
 # Получение текущей температуры,
 # атмосфореного давления и скорости ветра
