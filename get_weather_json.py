@@ -9,7 +9,7 @@ city = {"name": "Dmitrov", "latitude": "56.34",
 
 response = requests.get(
     base_url + f"latitude={city['latitude']}&longitude={city['longitude']}&hourly=temperature_2m,precipitation_probability,weathercode,surface_pressure,windspeed_10m&timezone={city['timezone']}")
-print(response)
+print(f"https get response: {response}")
 weather_dict = response.json()
 
 with open(f"./weather_data/weather {str(date.today())}.json", "w") as weather_file:
