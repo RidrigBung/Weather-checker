@@ -17,10 +17,5 @@ def index():
     return render_template('index.html')
 
 
-# @app.route("/weather")
-# def weather():
-#     return render_template('weather.html', city=city.name, today=today, hours=hours, week=week)
-
-
 if __name__ == "__main__":
     app.run(debug=True)
