@@ -1,5 +1,8 @@
 import json
 from datetime import datetime, date
+from classes import City
+from typing import Dict
+from get_weather_json import download_weather_json
 
 
 # Получение названий семи дней недели начиная с сегодня
@@ -58,31 +61,30 @@ def get_weathercode(codes: list = []) -> list:
     return raw_weathercode
 
 
-# Загрузка данных из последнего json файла в data_dict
-with open(f"./weather_data/weather {str(datetime.now())[:10]}.json", "r") as file:
-    data_string = ""
-    for line in file:
-        data_string += line.rstrip()
-data_dict = json.loads(data_string)
+def get_all_weather_data(city: City, cur_date: date) -> Dict[str, dict]:
+    data_dict = download_weather_json(city, cur_date)
 
-# Вся полезная информация хранится в словаре, где значения - списки,
-# словарь можно получить по ключу "hourly", элементы списка -
-# это данные о погоде с разницей во времени 1 час для соседних элементов.
-# Списки содержат почасовую информацию о 7 днях начиная с сегодняшнего.
-data_dict = data_dict["hourly"]
+    # Вся полезная информация хранится в словаре, где значения - списки,
+    # словарь можно получить по ключу "hourly", элементы списка -
+    # это данные о погоде с разницей во времени 1 час для соседних элементов.
+    # Списки содержат почасовую информацию о 7 днях начиная с сегодняшнего.
+    data_dict = data_dict["hourly"]
 
-cur_hour = get_cur_hour()
-weather_week_day = get_weather_week_day(data_dict["time"])
+    cur_hour = get_cur_hour()
+    weather_week_day = get_weather_week_day(data_dict["time"])
 
-today = {"temperature": data_dict["temperature_2m"][cur_hour],
-         "weathercode": simplify_weathercode(data_dict["weathercode"][cur_hour]),
-         "week_day": weather_week_day[0],
-         "pressure": data_dict["surface_pressure"][cur_hour],
-         "windspeed": data_dict["windspeed_10m"][cur_hour], }
+    data = {}
+    data["today"] = {"temperature": data_dict["temperature_2m"][cur_hour],
+                     "weathercode": simplify_weathercode(data_dict["weathercode"][cur_hour]),
+                     "week_day": weather_week_day[0],
+                     "pressure": data_dict["surface_pressure"][cur_hour],
+                     "windspeed": data_dict["windspeed_10m"][cur_hour], }
 
-hours = {"time": get_weather_time(),
-         "temperature": data_dict["temperature_2m"][:24]}
+    data["hours"] = {"time": get_weather_time(),
+                     "temperature": data_dict["temperature_2m"][:24]}
 
-week = {"temperature": get_max_temperature_list(data_dict["temperature_2m"]),
-        "weathercode": get_weathercode(data_dict["weathercode"]),
-        "week_day": weather_week_day[1:], }
+    data["week"] = {"temperature": get_max_temperature_list(data_dict["temperature_2m"]),
+                    "weathercode": get_weathercode(data_dict["weathercode"]),
+                    "week_day": weather_week_day[1:], }
+
+    return data
