@@ -61,7 +61,7 @@ def get_weathercode(codes: list = []) -> list:
     return raw_weathercode
 
 
-def get_all_weather_data(city: City, cur_date: date) -> Dict[str, dict]:
+def get_current_weather_data(city: City, cur_date: date) -> Dict[str, dict]:
     data_dict = download_weather_json(city, cur_date)
 
     # Вся полезная информация хранится в словаре, где значения - списки,
