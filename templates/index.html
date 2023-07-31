@@ -1,77 +1,11 @@
 <!DOCTYPE html>
-<html lang="ru-RU">
-  <header>
-    <link rel="icon" href="static/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" href="../static/styles/style.css" />
-    {% if city -%}
-    <title>Weather checker in - {{ city }}</title>
-    {% else -%}
-    <title>Weather checker on your coordinates</title>
-    {% endif %}
-  </header>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
   <body>
-    <header></header>
-    <main>
-      <div class="window">
-        <p class="city">{{ city }}</p>
-        <div class="today-border">
-          <div class="left-column">
-            <p class="data">{{ today["week_day"] }}</p>
-            <p class="data">{{ today["pressure"] }} hPa</p>
-            <p class="data">{{ today["windspeed"] }} km/h</p>
-          </div>
-          {% if today["weathercode"] == "0" -%}
-          <img src="/static/images/weather0.png" alt="Weather icon" />
-          {% elif today["weathercode"] == "1" -%}
-          <img src="/static/images/weather1.png" alt="Weather icon" />
-          {% elif today["weathercode"] == "2" -%}
-          <img src="/static/images/weather2.png" alt="Weather icon" />
-          {% else -%}
-          <img src="/static/images/weather3.png" alt="Weather icon" />
-          {% endif -%}
-          <div class="top-right-corner">
-            <p>
-              {% if today["temperature"] > 0 -%}+{% endif -%}{{
-              today["temperature"] }}℃
-            </p>
-          </div>
-        </div>
-        <div class="hours-border">
-          {% for i in range(24) -%}
-          <div class="hour">
-            <p class="data1">{{ hours["time"][i] }}</p>
-            <p class="data2">
-              {% if hours["temperature"][i] > 0 -%}+{% endif -%}{{
-              hours["temperature"][i] }}℃
-            </p>
-          </div>
-          {% endfor -%}
-        </div>
-        <div class="rest-of-week">
-          {% for i in range(6) -%}
-          <div class="day-of-week">
-            {% if week["weathercode"][i] == "0" -%}
-            <img src="/static/images/weather0.png" alt="Weather icon" />
-            {% elif week["weathercode"][i] == "1" -%}
-            <img src="/static/images/weather1.png" alt="Weather icon" />
-            {% elif week["weathercode"][i] == "2" -%}
-            <img src="/static/images/weather2.png" alt="Weather icon" />
-            {% else -%}
-            <img src="/static/images/weather3.png" alt="Weather icon" />
-            {% endif -%}
-            <div>
-              <p class="data1">{{ week["week_day"][i][:3].upper() }}</p>
-              <p class="data2">
-                {% if week["temperature"][i] > 0 -%}+{% endif -%}{{
-                week["temperature"][i] }}℃
-              </p>
-            </div>
-          </div>
-          {% endfor -%}
-        </div>
-      </div>
-    </main>
-    <footer></footer>
+    <h1><a href="{{ weather_url }}">Link</a></h1>
   </body>
 </html>
