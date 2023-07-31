@@ -1,8 +1,7 @@
-import json
 from datetime import datetime, date
+import requests
 from classes import City
 from typing import Dict
-from get_weather_json import download_weather_json
 
 
 # Получение названий семи дней недели начиная с сегодня
@@ -59,6 +58,15 @@ def get_weathercode(codes: list = []) -> list:
         raw_weathercode.append(simplify_weathercode(codes[i * 24]))
 
     return raw_weathercode
+
+
+def download_weather_json(city: City, cur_date: date) -> dict:
+    base_url = "https://api.open-meteo.com/v1/forecast?"
+
+    response = requests.get(
+        base_url + f"latitude={city.latitude}&longitude={city.longitude}&hourly=temperature_2m,precipitation_probability,weathercode,surface_pressure,windspeed_10m&timezone=auto")
+    # print(f"https get response: {response}")
+    return response.json()
 
 
 def get_current_weather_data(city: City, cur_date: date) -> Dict[str, dict]:
