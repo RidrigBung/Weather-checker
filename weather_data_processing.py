@@ -1,5 +1,7 @@
-import json
 from datetime import datetime, date
+import requests
+from classes import City
+from typing import Dict
 
 
 # Получение названий семи дней недели начиная с сегодня
@@ -58,31 +60,39 @@ def get_weathercode(codes: list = []) -> list:
     return raw_weathercode
 
 
-# Загрузка данных из последнего json файла в data_dict
-with open(f"./weather_data/weather {str(datetime.now())[:10]}.json", "r") as file:
-    data_string = ""
-    for line in file:
-        data_string += line.rstrip()
-data_dict = json.loads(data_string)
+def download_weather_json(city: City, cur_date: date) -> dict:
+    base_url = "https://api.open-meteo.com/v1/forecast?"
 
-# Вся полезная информация хранится в словаре, где значения - списки,
-# словарь можно получить по ключу "hourly", элементы списка -
-# это данные о погоде с разницей во времени 1 час для соседних элементов.
-# Списки содержат почасовую информацию о 7 днях начиная с сегодняшнего.
-data_dict = data_dict["hourly"]
+    response = requests.get(
+        base_url + f"latitude={city.latitude}&longitude={city.longitude}&hourly=temperature_2m,precipitation_probability,weathercode,surface_pressure,windspeed_10m&timezone=auto")
+    # print(f"https get response: {response}")
+    return response.json()
 
-cur_hour = get_cur_hour()
-weather_week_day = get_weather_week_day(data_dict["time"])
 
-today = {"temperature": data_dict["temperature_2m"][cur_hour],
-         "weathercode": simplify_weathercode(data_dict["weathercode"][cur_hour]),
-         "week_day": weather_week_day[0],
-         "pressure": data_dict["surface_pressure"][cur_hour],
-         "windspeed": data_dict["windspeed_10m"][cur_hour], }
+def get_current_weather_data(city: City, cur_date: date) -> Dict[str, dict]:
+    data_dict = download_weather_json(city, cur_date)
 
-hours = {"time": get_weather_time(),
-         "temperature": data_dict["temperature_2m"][:24]}
+    # Вся полезная информация хранится в словаре, где значения - списки,
+    # словарь можно получить по ключу "hourly", элементы списка -
+    # это данные о погоде с разницей во времени 1 час для соседних элементов.
+    # Списки содержат почасовую информацию о 7 днях начиная с сегодняшнего.
+    data_dict = data_dict["hourly"]
 
-week = {"temperature": get_max_temperature_list(data_dict["temperature_2m"]),
-        "weathercode": get_weathercode(data_dict["weathercode"]),
-        "week_day": weather_week_day[1:], }
+    cur_hour = get_cur_hour()
+    weather_week_day = get_weather_week_day(data_dict["time"])
+
+    data = {}
+    data["today"] = {"temperature": data_dict["temperature_2m"][cur_hour],
+                     "weathercode": simplify_weathercode(data_dict["weathercode"][cur_hour]),
+                     "week_day": weather_week_day[0],
+                     "pressure": data_dict["surface_pressure"][cur_hour],
+                     "windspeed": data_dict["windspeed_10m"][cur_hour], }
+
+    data["hours"] = {"time": get_weather_time(),
+                     "temperature": data_dict["temperature_2m"][:24]}
+
+    data["week"] = {"temperature": get_max_temperature_list(data_dict["temperature_2m"]),
+                    "weathercode": get_weathercode(data_dict["weathercode"]),
+                    "week_day": weather_week_day[1:], }
+
+    return data

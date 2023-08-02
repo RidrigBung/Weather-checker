@@ -12,6 +12,8 @@ html {
   background-size: cover;
 }
 
+/* weather.html */
+
 main {
   height: 90vh;
   margin: 2em 20%;
@@ -124,4 +126,51 @@ main {
   align-self: center;
   overflow: hidden;
   width: 80%;
+}
+
+/* index.html */
+
+.index-form {
+  font-size: 48px;
+  margin: 1em 30%;
+  padding: 0.3em;
+  padding-top: 1em 1em;
+  text-align: center;
+  background: linear-gradient(
+    rgba(255, 114, 253, 0.75),
+    rgba(231, 68, 229, 0.75),
+    rgba(209, 29, 206, 0.75)
+  );
+  border: 0.1em solid rgb(23, 36, 154);
+  border-radius: 1em;
+  color: rgb(255, 255, 255);
+}
+
+.index-form h1 {
+  font-size: 48px;
+  color: rgb(255, 255, 255);
+}
+
+.index-form input,
+.index-form select {
+  font-size: 28px;
+  padding: 0.3em;
+  margin-bottom: 1em;
+  text-align: center;
+  background: linear-gradient(
+    rgba(255, 114, 253, 0.75),
+    rgba(231, 68, 229, 0.75),
+    rgba(209, 29, 206, 0.75)
+  );
+  border: 0.1em solid rgb(23, 36, 154);
+  border-radius: 0.5em;
+  color: rgb(255, 255, 255);
+}
+
+.index-form input:last-of-type {
+  margin-bottom: 0;
+}
+
+.index-form select option {
+  background-color: rgba(255, 114, 253);
 }
