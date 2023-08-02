@@ -14,6 +14,8 @@ def index():
         if city_name == "":
             latitude = request.form.get("latitude")
             longitude = request.form.get("longitude")
+            if latitude == "" or longitude == "":
+                return render_template('index.html', cities=get_cities())
             city_name = "Coordinates"
             city = City(latitude, longitude, city_name)
             cur_date = date.today()
