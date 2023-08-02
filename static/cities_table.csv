@@ -1,22 +1,86 @@
-Moscow,55.75,37.62
+Abu,48.15,17.11
+Abuja,13.11,-59.62
+Accra,-34.6, -58.38
+Addis,44.43,26.11
+Algiers,52.23,21.01
+Amman,48.21,16.37
+Amsterdam,54.69,25.28
+Andorra,-22.5, 17.08
+Ankara,-24.6, 25.91
+Antananarivo,23.13,-82.38
+Apia,14.64,-90.51
+Ashgabat,25.29,51.53
+Asmara,14.69,-17.44
+Astana,23.71,90.41
 Astrakhan,46.35,48.04
+Asuncion,33.51,36.29
+Athens,11.59,43.15
+Baghdad,38.54,68.78
+Baku,40.18,44.51
+Bamako,45.81,15.98
+Bandar,30.06,31.25
+Bangkok,34.53,69.17
+Bangui,33.72,73.04
+Banjul,10.49,-66.88
 Barnaul,53.36,83.76
+Basseterre,50.45,30.52
+Beirut,13.16,-61.23
+Belgrade,47.01,28.86
+Belmopan,55.68,12.57
+Berlin,-13.9, 33.79
+Bern,-12.0, -77.03
+Bishkek,46.05,14.51
+Bissau,-15.4, 28.29
+Bogota,12.13,-86.25
+Brasilia,-25.9, 32.58
+Bratislava,-29.3, 27.48
+Brazzaville,26.23,50.59
+Bridgetown,23.58,58.41
+Brussels,-26.3, 31.13
 Bryansk,53.25,34.37
-Vladivostok,51.67,39.18
-Volgograd,56.85,60.61
-Voronezh,55.79,49.12
-Yekaterinburg,54.71,20.51
+Bucharest,25.06,-77.34
+Budapest,19.43,-99.13
+Buenos,12.11,15.04
+Bujumbura,55.75,37.62
+Cairo,36.82,10.17
+Canberra,-17.8, 31.05
+Caracas,15.55,32.53
+Castries,60.17,24.94
+Cheboksary,52.52,13.41
+Chelyabinsk,42.87,74.59
+Dakar,13.69,-89.19
+Damascus,18.47,-69.89
+Dhaka,15.35,44.21
+Dili,59.33,18.06
+Djibouti,43.85,18.36
+Dodoma,-19.0, -65.26
+Doha,59.44,24.75
+Dublin,41.26,69.22
+Dushanbe,41.69,44.83
+Gaborone,56.95,24.11
+Georgetown,17.12,-61.84
+Guatemala,43.94,12.45
+Havana,41.89,12.51
+Irkutsk,56.02,92.87
+Islamabad,41.33,19.82
 Ivanovo,55.33,86.08
 Izhevsk,45.04,38.98
-Irkutsk,56.02,92.87
-Kazan,55.73,52.41
+Jakarta,-33.4, -70.65
+Juba,12.05,-61.75
+Kabul,32.89,13.19
 Kaliningrad,53.76,87.11
+Kampala,27.47,89.64
+Kathmandu,29.37,47.98
+Kazan,55.73,52.41
 Kemerovo,55.04,82.93
+Khabarovsk,17.25,-88.77
+Kigali,24.69,46.72
 Kirov,54.99,73.37
 Krasnodar,58.01,56.25
 Krasnoyarsk,47.23,39.72
 Lipetsk,54.63,39.69
 Makhachkala,59.94,30.31
+Moscow,55.75,37.62
 Naberezhnyye,51.54,46.01
 Nizhniy,53.53,49.35
 Novokuznetsk,57.15,65.53
@@ -27,94 +91,30 @@ Penza,55.15,61.43
 Perm,57.63,39.87
 Rostov,24.47,54.37
 Ryazan,31.96,35.95
-Samara,39.92,32.85
 Saint,-18.9, 47.54
+Samara,39.92,32.85
 Saratov,15.34,38.93
 Tol,51.18,71.45
 Tomsk,-25.2, -57.65
 Tula,37.98,23.73
 Tyumen,37.95,58.38
-Ulyanovsk,40.38,49.89
 Ufa,13.45,-16.58
-Khabarovsk,17.25,-88.77
-Cheboksary,52.52,13.41
-Chelyabinsk,42.87,74.59
-Yaroslavl,-15.7, -47.93
-Abu,48.15,17.11
-Abuja,13.11,-59.62
-Addis,44.43,26.11
-Accra,-34.6, -58.38
-Algiers,52.23,21.01
-Amman,48.21,16.37
-Amsterdam,54.69,25.28
-Andorra,-22.5, 17.08
-Ankara,-24.6, 25.91
-Antananarivo,23.13,-82.38
-Apia,14.64,-90.51
-Asmara,14.69,-17.44
-Astana,23.71,90.41
-Asuncion,33.51,36.29
-Athens,11.59,43.15
-Ashgabat,25.29,51.53
-Baghdad,38.54,68.78
-Baku,40.18,44.51
-Bamako,45.81,15.98
-Bangui,33.72,73.04
-Bangkok,34.53,69.17
-Bandar,30.06,31.25
-Banjul,10.49,-66.88
-Basseterre,50.45,30.52
-Beirut,13.16,-61.23
-Belgrade,47.01,28.86
-Belmopan,55.68,12.57
-Berlin,-13.9, 33.79
-Bern,-12.0, -77.03
-Bissau,-15.4, 28.29
-Bishkek,46.05,14.51
-Bogota,12.13,-86.25
-Brazzaville,26.23,50.59
-Brasilia,-25.9, 32.58
-Bratislava,-29.3, 27.48
-Bridgetown,23.58,58.41
-Brussels,-26.3, 31.13
-Budapest,19.43,-99.13
-Bujumbura,55.75,37.62
-Bucharest,25.06,-77.34
-Buenos,12.11,15.04
+Ulyanovsk,40.38,49.89
 Vaduz,35.18,33.36
 Valletta,18.09,-15.98
-Warsaw,28.64,77.22
 Vatican,59.91,10.75
+Victoria,50.09,14.42
+Vienna,10.67,-61.52
+Vientiane,42.67,21.17
+Vilnius,14.93,-23.51
+Vladivostok,51.67,39.18
+Volgograd,56.85,60.61
+Voronezh,55.79,49.12
+Warsaw,28.64,77.22
 Washington,42.44,19.26
 Wellington,18.54,-72.34
-Vienna,10.67,-61.52
-Victoria,50.09,14.42
-Vilnius,14.93,-23.51
 Windhoek,-25.7, 28.19
-Vientiane,42.67,21.17
-Gaborone,56.95,24.11
-Havana,41.89,12.51
-Guatemala,43.94,12.45
-Dakar,13.69,-89.19
-Dhaka,15.35,44.21
-Damascus,18.47,-69.89
-Jakarta,-33.4, -70.65
-Djibouti,43.85,18.36
-Georgetown,17.12,-61.84
-Juba,12.05,-61.75
-Dili,59.33,18.06
-Dodoma,-19.0, -65.26
-Doha,59.44,24.75
-Dublin,41.26,69.22
-Dushanbe,41.69,44.83
+Yaroslavl,-15.7, -47.93
+Yekaterinburg,54.71,20.51
 Yerevan,35.69,51.42
 Zagreb,14.08,-87.21
-Islamabad,41.33,19.82
-Kabul,32.89,13.19
-Cairo,36.82,10.17
-Kampala,27.47,89.64
-Canberra,-17.8, 31.05
-Caracas,15.55,32.53
-Castries,60.17,24.94
-Kathmandu,29.37,47.98
-Kigali,24.69,46.72
